@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataScript Compiler</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="color-scheme" content="light dark">
+</head>
+<body>
+    <header class="fluent-header">
+        <h1>DataScript Compiler</h1>
+    </header>
+    <main class="container fluent-main" style="display:flex;gap:2rem;">
+        <!-- Left: Execution -->
+        <section class="card glassy" style="flex:1;min-width:320px;">
+            <h2>Upload & Run DSL Script</h2>
+            <label for="csvFile" class="fluent-label">Select Data File (CSV, JSON, Excel):</label>
+            <input type="file" id="csvFile" accept=".csv,.json,.xlsx,.xls" aria-label="Upload CSV, JSON, or Excel file">
+            <label for="dslScript" class="fluent-label">DSL Script:</label>
+            <textarea id="dslScript" placeholder="Write your DSL script here..." aria-label="DSL Script"></textarea>
+            <button id="runButton" class="fluent-btn">Run Script</button>
+            <button id="clearButton" class="fluent-btn" type="button">Clear</button>
+            <button id="sampleButton" class="fluent-btn" type="button">Sample Data</button>
+            <button id="dslRefButton" class="fluent-btn" type="button">Show DSL Reference</button>
+            <button id="downloadLogButton" class="fluent-btn" type="button">Download Log</button>
+            <div id="output" class="fluent-output" aria-live="polite"></div>
+            <a id="downloadLink" download style="display:none;" class="fluent-link">Download Processed File</a>
+        </section>
+        <!-- Right: Preview -->
+        <section class="card glassy" style="flex:1;min-width:320px;">
+            <h2 style="margin-top:0;">Preview</h2>
+            <div style="margin-bottom:1rem;">
+                <button id="togglePreviewBtn" class="fluent-btn" type="button" style="background:#fff;color:var(--primary);border:1px solid var(--primary);">
+                    Show Processed Preview
+                </button>
+            </div>
+            <div id="previewTableContainer">
+                <h3 id="previewTitle">Current File Preview</h3>
+                <div id="previewTable"></div>
+            </div>
+        </section>
+    </main>
+    <footer class="fluent-footer">
+        &copy; 2025 DataScript Compiler. All rights reserved.
+    </footer>
+    <div id="dslRefModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:#0008;z-index:1000;align-items:center;justify-content:center;">
+        <div style="background:#fff;padding:2rem;border-radius:12px;max-width:600px;width:90%;position:relative;">
+            <button id="closeDslRef" style="position:absolute;top:1rem;right:1rem;">&times;</button>
+            <h2>DSL Command Reference</h2>
+            <pre style="max-height:400px;overflow:auto;font-size:0.95em;">
+LOAD; SAVE 'file.csv'; DROP 'col'; RENAME 'old' TO 'new'; FILTER 'cond'; GROUPBY 'col' AGG 'sum'; ... (see docs)
+            </pre>
+            <a href="/Documentation.txt" target="_blank">Full Documentation</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
